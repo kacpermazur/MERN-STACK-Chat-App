@@ -61,6 +61,7 @@ class ChatPage extends Component {
       })
       .then(resJson => {
         console.log(resJson);
+        this.state.socket.emit("new-msg", resJson);
       })
       .catch(err => {
         console.log(err);
