@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Grid, Header } from "semantic-ui-react";
+
 import UserInput from "./chat-input.compoent";
+
+import "./chat-page.css";
 
 class ChatPage extends Component {
   render() {
@@ -11,7 +14,7 @@ class ChatPage extends Component {
         </Grid.Column>
 
         <Grid.Column width={8}>
-          <Grid.Row className="message-container">Messages Here</Grid.Row>
+          <Grid.Row className="message-area">Messages Here</Grid.Row>
           <Grid.Row>
             <UserInput />
           </Grid.Row>
