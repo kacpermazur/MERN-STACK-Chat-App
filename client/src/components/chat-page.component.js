@@ -43,11 +43,14 @@ class ChatPage extends Component {
       });
   }
 
-  onSubmit = (username, content) => {
+  onSubmit = (username, content, profile) => {
     let reqBody = {
       username: username,
-      content: content
+      content: content,
+      profile: profile
     };
+
+    this.setState({ profile: profile });
 
     fetch("http://localhost:8080/messages/send", {
       method: "POST",

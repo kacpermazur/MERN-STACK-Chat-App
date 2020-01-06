@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const MessageSchema = new Schema({
   username: { type: String, required: true },
   content: { type: String },
+  profile: { type: String },
   timestamp: { type: Date, default: Date.now }
 });
 

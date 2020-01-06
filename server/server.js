@@ -27,7 +27,6 @@ connection.once("open", () => {
 
 // Router
 const messageRouter = require("./routes/messages");
-
 app.use("/messages", messageRouter);
 
 let server = app.listen(port, () => {

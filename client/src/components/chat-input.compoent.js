@@ -6,7 +6,8 @@ class UserInput extends Component {
     super(props);
     this.state = {
       username: "",
-      content: ""
+      content: "",
+      profile: ""
     };
   }
 
@@ -22,13 +23,20 @@ class UserInput extends Component {
           required
         />
 
-        <Form.Input
-          placeholder="type here message..."
+        <Form.TextArea
           value={this.state.content}
+          placeholder="type here message..."
           onChange={e => {
             this.setState({ content: e.target.value });
           }}
           required
+        />
+        <Form.Input
+          value={this.state.profile}
+          placeholder="www.website.com/image.png..."
+          onChange={e => {
+            this.setState({ profile: e.target.value });
+          }}
         />
 
         <Button type="submit">Submit</Button>
@@ -37,9 +45,12 @@ class UserInput extends Component {
   }
 
   onSubmit = () => {
-    this.props.onSubmit(this.state.username, this.state.content);
+    this.props.onSubmit(
+      this.state.username,
+      this.state.content,
+      this.state.profile
+    );
     this.setState({
-      username: "",
       content: ""
     });
 

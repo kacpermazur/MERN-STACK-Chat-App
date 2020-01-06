@@ -63,6 +63,7 @@ describe("/POST message", () => {
         res.body.should.be.a("object");
         res.body.should.have.property("username");
         res.body.should.have.property("content");
+        res.body.should.have.property("profile");
         done();
       });
   });
