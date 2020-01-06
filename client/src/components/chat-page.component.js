@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Grid, Header } from "semantic-ui-react";
-import axios from "axios";
 
 import UserInput from "./chat-input.compoent";
 import ChatElement from "./chat-element.component";
@@ -17,11 +16,13 @@ class ChatPage extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:8080/messages/")
+    fetch("http://localhost:8080/messages/", {
+      method: "GET"
+    })
+      .then(res => {
+        return res.json();
+      })
       .then(resJson => {
-        console.log(resJson);
-
         this.setState({
           messages: resJson
         });
@@ -30,6 +31,30 @@ class ChatPage extends Component {
         console.log(err);
       });
   }
+
+  onSubmit = (username, content) => {
+    let reqBody = {
+      username: username,
+      content: content
+    };
+
+    fetch("http://localhost:8080/messages/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(reqBody)
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(resJson => {
+        console.log(resJson);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
@@ -40,10 +65,14 @@ class ChatPage extends Component {
 
         <Grid.Column width={8}>
           <Grid.Row className="message-area">
-            <ChatElement />
+            {this.state.messages.length > 0 ? (
+              <ChatElement messages={this.state.messages} />
+            ) : (
+              <div />
+            )}
           </Grid.Row>
           <Grid.Row>
-            <UserInput />
+            <UserInput onSubmit={this.onSubmit} />
           </Grid.Row>
         </Grid.Column>
 
