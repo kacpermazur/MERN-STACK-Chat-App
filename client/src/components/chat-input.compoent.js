@@ -10,13 +10,6 @@ class UserInput extends Component {
     };
   }
 
-  onSubmit = () => {
-    this.props.onSubmit(this.state.username, this.state.content);
-    this.setState({
-      content: ""
-    });
-  };
-
   render() {
     return (
       <Form onSubmit={this.state.onSubmit}>
@@ -29,8 +22,8 @@ class UserInput extends Component {
           required
         />
 
-        <Form.TextArea
-          placeholder="Message Goes Here..."
+        <Form.Input
+          placeholder="type here message..."
           value={this.state.content}
           onChange={e => {
             this.setState({ content: e.target.value });
@@ -42,6 +35,16 @@ class UserInput extends Component {
       </Form>
     );
   }
+
+  onSubmit = () => {
+    this.props.onSubmit(this.state.username, this.state.content);
+    this.setState({
+      username: "",
+      content: ""
+    });
+
+    console.log("INPUT: TEST");
+  };
 }
 
 export default UserInput;
