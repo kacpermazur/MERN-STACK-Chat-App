@@ -7,6 +7,14 @@ import ChatElement from "./chat-element.component";
 import "./chat-page.css";
 
 class ChatPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: []
+    };
+  }
+
   render() {
     return (
       <Grid>
