@@ -26,6 +26,28 @@ describe("/GET message", () => {
 });
 
 describe("/POST message", () => {
+  it("Send NOT a Message to the DB", done => {
+    let message = {
+      username: "",
+      content: "unit test boi"
+    };
+
+    chai
+      .request(server)
+      .post("/messages/send")
+      .send(message)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a("object");
+        expect(res.body.errors.username)
+          .to.contain.property("kind")
+          .eql("required");
+        done();
+      });
+  });
+});
+
+describe("/POST message", () => {
   it("Send a Message to the DB", done => {
     let message = {
       username: "UnitTestJoe",
@@ -38,7 +60,7 @@ describe("/POST message", () => {
       .send(message)
       .end((err, res) => {
         res.should.have.status(200);
-        res.should.be.a("object");
+        res.body.should.be.a("object");
         res.body.should.have.property("username");
         res.body.should.have.property("content");
         done();
