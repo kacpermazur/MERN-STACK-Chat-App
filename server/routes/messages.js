@@ -12,11 +12,13 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/send").post((req, res) => {
-    Message.create(req.body)
+  Message.create(req.body)
     .then(message => {
-        res.send(message).status(200);
+      res.send(message).status(200);
     })
     .catch(err => {
-        console.log("ROUTER: " + err).status(500);
+      console.log("ROUTER: " + err).status(500);
     });
-}});
+});
+
+module.exports = router;
