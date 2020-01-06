@@ -17,7 +17,8 @@ router.route("/send").post((req, res) => {
       res.send(message).status(200);
     })
     .catch(err => {
-      console.log("ROUTER: " + err).status(500);
+      console.log("ROUTER: " + err);
+      res.send(err).status(500);
     });
 });
 
