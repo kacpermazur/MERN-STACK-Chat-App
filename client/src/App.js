@@ -1,12 +1,9 @@
 import React, { Component } from "react";
+import ChatApp from "./components/chat-page.component";
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <p>main page</p>
-      </div>
-    );
+    return <ChatApp />;
   }
 }
 
