@@ -12,7 +12,7 @@ class UserInput extends Component {
 
   render() {
     return (
-      <Form onSubmit={this.state.onSubmit}>
+      <Form onSubmit={this.onSubmit}>
         <Form.Input
           placeholder="name"
           value={this.state.username}
