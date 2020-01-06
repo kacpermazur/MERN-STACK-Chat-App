@@ -17,8 +17,8 @@ class ChatElement extends Component {
                 }}
                 src={"https://image.flaticon.com/icons/svg/149/149071.svg"}
               />
-              <Comment.Author as="a">MAtt</Comment.Author>
-              <Comment.Text>How artistic!</Comment.Text>
+              <Comment.Author as="a">{message.username}}</Comment.Author>
+              <Comment.Text>{message.content}</Comment.Text>
             </Comment>
           );
         })}
