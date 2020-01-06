@@ -1,4 +1,5 @@
 .message-area {
+  margin-top: 1em;
   height: 75vh;
   overflow-y: scroll;
 }
