@@ -6,12 +6,15 @@ import ChatElement from "./chat-element.component";
 
 import "./chat-page.css";
 
+import openSocket from "socket.io-client";
+
 class ChatPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      messages: []
+      messages: [],
+      socket: openSocket("http://localhost:8080")
     };
   }
 
