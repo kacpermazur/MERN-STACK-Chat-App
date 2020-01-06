@@ -16,6 +16,14 @@ class ChatPage extends Component {
       messages: [],
       socket: openSocket("http://localhost:8080")
     };
+
+    this.state.socket.on("new-msg", message => {
+      let currMessages = this.state.messages;
+      currMessages.push(message);
+      this.setState({
+        messages: currMessages
+      });
+    });
   }
 
   componentDidMount() {

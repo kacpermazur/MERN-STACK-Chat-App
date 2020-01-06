@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const socket = require("socket.io");
 
 require("dotenv").config();
 
@@ -29,8 +30,16 @@ const messageRouter = require("./routes/messages");
 
 app.use("/messages", messageRouter);
 
-app.listen(port, () => {
+let server = app.listen(port, () => {
   console.log("SERVER: Started On Port: " + port);
+});
+
+let io = socket(server);
+
+io.on("connection", socket => {
+  socket.on("new-msg", data => {
+    io.sockets.emit("new-msg", data);
+  });
 });
 
 module.exports = app; // testing
