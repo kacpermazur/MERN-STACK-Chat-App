@@ -32,3 +32,5 @@ app.use("/messages", messageRouter);
 app.listen(port, () => {
   console.log("SERVER: Started On Port: " + port);
 });
+
+module.exports = app; // testing
